@@ -61,8 +61,8 @@ before_script:
 
   - sh -c "if [ '$HHVM' != '1' ]; then echo 'extension = memcached.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi"
   - sh -c "if [ '$HHVM' != '1' ]; then echo 'extension = redis.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi"
-  - sh -c "if [ '$HHVM' != '1' ]; then echo 'extension = apc.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi"
-  - sh -c "if [ '$PHP' = '5.6' ]; then pecl install apc; fi"
+  - sh -c "if [ '$PHP' != 'hhvm' ]; then echo 'extension = apcu.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi"
+  - sh -c "if [ '$PHP' != 'hhvm' ]; then pecl install apcu; fi"
   - sh -c "if [ '$HHVM' = '1' ]; then composer require lorenzo/multiple-iterator=~1.0; fi"
 
   - phpenv rehash
